@@ -1,6 +1,7 @@
 import csv, time as t
 from datetime import date as d
 
+
 def fileParser(file_path):
     json_list = []
     with open(file_path) as csv_file:
@@ -22,8 +23,8 @@ def fileParser(file_path):
                 "battery_status": int(row_list[9]),
                 "latitude": float(row_list[10]),
                 "longitude": float(row_list[11]),
-                "OBC_date": date,
-                "OBC_time": time
+                "OBC_time": time,
+                "OBC_date": date
              }
             json_list.append(json)
         return json_list

@@ -1,33 +1,15 @@
-import requestsHTTP as Req
+import csv
 import random as rnd
 import time as t
-from datetime import date as d
+timeArray = t.ctime().split(" ")
+time = timeArray[3]
+date = timeArray[0] + " " + timeArray[1] + " " + timeArray[2]
 
-date = d.today()
-time = t.ctime().split()[3]
 
-'''
-example = [{
-            "strain_sensor_1": 42,
-            "strain_sensor_2": 65,
-            "strain_sensor_3": 0,
-            "strain_sensor_4": 1,
-            "vibration_sensor_1": 9,
-            "vibration_sensor_2": 20,
-            "vibration_sensor_3": 3,
-            "vibration_sensor_4": 18,
-            "vibration_sensor_5": 0,
-            "battery_status": 98,
-            "latitude": 87.01343143,
-            "longitude": 23.63418,
-            "OBC_time": time,
-            "OBC_date": date
-          }]
-'''
-randomData = []
-
-while True:
-    data = {
+for i in range(10):         # a for append newline = "" because by default it is \n
+    with open('test.csv', 'a', newline="") as csvFile:
+        writer = csv.writer(csvFile)
+        data = {
             "id": rnd.randint(0, 100),
             "strain_sensor_1": rnd.randint(0, 100),
             "strain_sensor_2": rnd.randint(0, 100),
@@ -44,8 +26,5 @@ while True:
             "OBC_time": time,
             "OBC_date": date
          }
-    randomData.append(data)
-    p = Req.postData(randomData)
-    t.sleep(1)
-
-
+        writer.writerow(data.values())
+    csvFile.close()
